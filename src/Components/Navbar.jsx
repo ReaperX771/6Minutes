@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import log from '../assets/images/log.jpg'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
   return (
     <nav className="fixed w-full bg-black bg-opacity-90 text-white z-50 shadow-md">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-4">
-        <div className="text-2xl font-bold text-red-600">6Minutes</div>
+       <img src={log} alt="6Minutes Logo" className="h-10 w-auto" />
 
         {/* Desktop Links */}
         <div className="hidden md:flex space-x-8">
