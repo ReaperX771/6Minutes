@@ -15,10 +15,19 @@ const Hero = () => {
             Collaborating with projects, founders, and builders to amplify visibility and accelerate growth.
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <AnchorLink href="#services" className="bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-colors">
+            <AnchorLink
+              href="#services"
+              className="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-colors text-sm md:text-base"
+              aria-label="Explore Services"
+            >
               Explore Services <FaArrowDown className="ml-2" />
             </AnchorLink>
-            <AnchorLink href="#partnership" className="border border-white hover:border-red-500 hover:text-red-500 text-white py-3 px-6 rounded-lg font-medium transition-colors">
+
+            <AnchorLink
+              href="#partnership"
+              className="w-full sm:w-auto border border-white hover:border-red-500 hover:text-red-500 text-white py-3 px-6 rounded-lg font-medium transition-colors text-sm md:text-base text-center"
+              aria-label="Partner With Us"
+            >
               Partner With Us
             </AnchorLink>
           </div>
