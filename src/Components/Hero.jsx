@@ -1,17 +1,42 @@
 import React from "react";
 import { FaArrowDown } from "react-icons/fa";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import logo from '../assets/images/logo.png'
 
 const Hero = () => {
   return (
-    <section id="hero" className="bg-black text-white min-h-screen flex flex-col justify-center items-center text-center px-4">
-      <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to 6Minutes — The Solution Dashboard!</h1>
-      <p className="text-lg md:text-2xl mb-8 max-w-2xl">
-        We collaborate with projects, founders, and builders to amplify visibility and accelerate growth through strategic marketing and innovation.
-      </p>
-      <AnchorLink href="#services" className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-full flex items-center gap-2 transition">
-        Explore Services <FaArrowDown />
-      </AnchorLink>
+    <section id="hero" className="bg-black text-white min-h-screen flex items-center pt-16">
+      <div className="max-w-7xl mx-auto px-4 py-20 flex flex-col-reverse md:flex-row items-center gap-8">
+        <div className="md:w-1/2">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Welcome to <span className="text-red-500">6Minutes</span> — The Solution Dashboard!
+          </h1>
+          <p className="text-xl mb-8 text-gray-300">
+            Collaborating with projects, founders, and builders to amplify visibility and accelerate growth.
+          </p>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <AnchorLink href="#services" className="bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-colors">
+              Explore Services <FaArrowDown className="ml-2" />
+            </AnchorLink>
+            <AnchorLink href="#partnership" className="border border-white hover:border-red-500 hover:text-red-500 text-white py-3 px-6 rounded-lg font-medium transition-colors">
+              Partner With Us
+            </AnchorLink>
+          </div>
+        </div>
+
+        <div className="md:w-1/2 flex justify-center">
+          <div className="relative">
+            {/* decorative glowing gradient layer */}
+            <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-red-500 via-pink-500 to-yellow-400 opacity-30 blur-3xl transform scale-105 transition-all duration-1000 hover:opacity-60" aria-hidden="true" />
+
+            <div className="relative inline-block rounded-xl p-1 ring-8 ring-red-500/40 shadow-2xl transform transition-transform duration-700 hover:scale-105 soft-bounce">
+              <div className="bg-gray-900 rounded-lg p-6 flex items-center justify-center border border-red-600 w-80 h-72 overflow-hidden">
+                <img src={logo} alt="6Minutes" className="max-w-full max-h-full rounded-md shadow-xl" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

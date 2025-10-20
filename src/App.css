@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+/* Gentle bounce animation for hero image frame */
+@keyframes gentle-bounce {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-14px); }
+}
+
+.soft-bounce {
+	animation: gentle-bounce 3s ease-in-out infinite;
+	will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.soft-bounce {
+		animation: none;
+	}
+}
