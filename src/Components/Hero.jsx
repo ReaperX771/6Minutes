@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowDown } from "react-icons/fa";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/log.jpg'
 
 const Hero = () => {
   return (
