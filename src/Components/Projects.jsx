@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaExternalLinkAlt, FaVideo, FaTimes } from "react-icons/fa";
+import { FaExternalLinkAlt, FaVideo, FaTimes, FaPlay, FaPause, FaVolumeUp, FaExpand } from "react-icons/fa";
 import img1 from '../assets/images/img1.jpeg';
 import img2 from '../assets/images/img2.jpeg';
 import img3 from '../assets/images/img3.jpeg';
@@ -13,6 +13,7 @@ const Projects = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const graphicsProjects = [
     {
@@ -94,10 +95,16 @@ const Projects = () => {
 
   const nextVideo = () => {
     setCurrentVideo((prev) => (prev + 1) % aiVideos.length);
+    setIsPlaying(false);
   };
 
   const prevVideo = () => {
     setCurrentVideo((prev) => (prev - 1 + aiVideos.length) % aiVideos.length);
+    setIsPlaying(false);
+  };
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -122,19 +129,16 @@ const Projects = () => {
                   className="h-48 relative overflow-hidden bg-gray-200"
                   onClick={() => openImageModal(project)}
                 >
-                  {/* Actual image displayed - may be cropped in small box */}
                   <img 
                     src={project.image} 
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />
-                  {/* Hover overlay - only shows on hover */}
                   <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center">
                     <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       Click to View Full Size
                     </span>
                   </div>
-                  {/* Category badge */}
                   <div className="absolute top-4 left-4">
                     <span className="bg-black text-white px-3 py-1 rounded-full text-sm font-medium">
                       {project.category}
@@ -156,42 +160,71 @@ const Projects = () => {
           </div>
 
           {/* AI Video Section */}
-          <div id="ai-video" className="bg-black text-white rounded-2xl p-8 text-center">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex items-center justify-center gap-3 mb-6">
+          <div id="ai-video" className="bg-black text-white rounded-2xl p-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center justify-center gap-3 mb-8 text-center">
                 <FaVideo className="text-red-600 text-2xl" />
                 <h3 className="text-2xl font-bold">AI Video Innovation</h3>
               </div>
-              <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg text-center">
                 Witness the future of content creation with our advanced AI video technology. 
                 Transforming ideas into stunning visual narratives through artificial intelligence.
               </p>
 
-              {/* AI Video Carousel */}
-              <div className="bg-gray-800 rounded-xl p-4 mb-8 relative">
-                <div className="relative h-96 rounded-lg overflow-hidden">
-                  <video 
-                    key={aiVideos[currentVideo].id}
-                    controls 
-                    className="w-full h-full object-cover"
-                    poster={aiVideos[currentVideo].thumbnail}
-                  >
-                    <source src={aiVideos[currentVideo].video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+              {/* AI Video Carousel - Full Width */}
+              <div className="bg-gray-900 rounded-xl overflow-hidden mb-8">
+                <div className="relative w-full">
+                  {/* Video Player - Full Width */}
+                  <div className="relative w-full h-96 bg-black">
+                    <video 
+                      key={aiVideos[currentVideo].id}
+                      controls
+                      className="w-full h-full object-contain"
+                      autoPlay={isPlaying}
+                    >
+                      <source src={aiVideos[currentVideo].video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    
+                    {/* Custom Video Controls */}
+                    <div className="absolute bottom-4 left-4 right-4 bg-black bg-opacity-50 rounded-lg p-3 flex items-center justify-between">
+                      <button 
+                        onClick={togglePlay}
+                        className="text-white hover:text-red-500 transition-colors"
+                      >
+                        {isPlaying ? <FaPause size={20} /> : <FaPlay size={20} />}
+                      </button>
+                      <div className="flex items-center space-x-4">
+                        <span className="text-white text-sm">
+                          {currentVideo + 1} / {aiVideos.length}
+                        </span>
+                        <div className="flex space-x-1">
+                          {aiVideos.map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setCurrentVideo(index)}
+                              className={`w-2 h-2 rounded-full ${
+                                index === currentVideo ? 'bg-red-600' : 'bg-gray-400'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   
-                  {/* Video Navigation */}
+                  {/* Video Navigation Arrows */}
                   {aiVideos.length > 1 && (
                     <>
                       <button 
                         onClick={prevVideo}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-70 text-white p-3 rounded-full hover:bg-red-600 transition-all"
                       >
                         ‹
                       </button>
                       <button 
                         onClick={nextVideo}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-70 text-white p-3 rounded-full hover:bg-red-600 transition-all"
                       >
                         ›
                       </button>
@@ -200,28 +233,17 @@ const Projects = () => {
                 </div>
                 
                 {/* Video Info */}
-                <div className="mt-4 text-center">
+                <div className="p-6 text-center">
                   <h4 className="text-xl font-bold text-white mb-2">
                     {aiVideos[currentVideo].title}
                   </h4>
                   <p className="text-gray-300">
                     {aiVideos[currentVideo].description}
                   </p>
-                  <div className="flex justify-center space-x-2 mt-3">
-                    {aiVideos.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentVideo(index)}
-                        className={`w-3 h-3 rounded-full ${
-                          index === currentVideo ? 'bg-red-600' : 'bg-gray-500'
-                        }`}
-                      />
-                    ))}
-                  </div>
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-400">
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-400">
                 <div className="text-center">
                   <h4 className="text-red-500 font-semibold mb-2">AI-Powered</h4>
                   <p className="text-sm">Advanced machine learning algorithms</p>
