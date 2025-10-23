@@ -16,7 +16,7 @@ const services = [
     id: "web-development",
     description: "Custom, responsive websites and modern web applications",
     type: "external",
-    url: "https://your-web-dev-project.com"
+    url: "https://restmeme.com"
   },
   { 
     icon: <FaRobot />, 
