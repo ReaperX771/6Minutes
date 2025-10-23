@@ -35,12 +35,15 @@ const Hero = () => {
 
         <div className="md:w-1/2 flex justify-center">
           <div className="relative">
-            {/* decorative glowing gradient layer */}
-            <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-red-500 via-pink-500 to-yellow-400 opacity-30 blur-3xl transform scale-105 transition-all duration-1000 hover:opacity-60" aria-hidden="true" />
+            {/* responsive decorative glowing gradient layer */}
+            <div
+              className="absolute -inset-2 sm:-inset-1 rounded-xl bg-gradient-to-r from-red-500 via-pink-500 to-yellow-400 opacity-20 sm:opacity-30 filter blur-2xl transform scale-105 transition-all duration-1000 hover:opacity-60"
+              aria-hidden="true"
+            />
 
-            <div className="relative inline-block rounded-xl p-1 ring-8 ring-red-500/40 shadow-2xl transform transition-transform duration-700 hover:scale-105 soft-bounce">
-              <div className="bg-gray-900 rounded-lg p-6 flex items-center justify-center border border-red-600 w-80 h-72 overflow-hidden">
-                <img src={logo} alt="6Minutes" className="max-w-full max-h-full rounded-md shadow-xl" />
+            <div className="relative inline-block rounded-xl p-1 ring-4 sm:ring-8 md:ring-10 ring-red-500/40 shadow-2xl transform transition-transform duration-700 hover:scale-105 soft-bounce">
+              <div className="bg-gray-900 rounded-lg p-4 sm:p-6 flex items-center justify-center border border-red-600 overflow-hidden w-64 h-56 sm:w-72 sm:h-64 md:w-80 md:h-72 lg:w-96 lg:h-80 xl:w-[520px] xl:h-[420px]">
+                <img src={logo} alt="6Minutes" className="w-full h-full object-contain rounded-md shadow-xl" />
               </div>
             </div>
           </div>

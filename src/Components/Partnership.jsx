@@ -25,7 +25,7 @@ const Partnership = () => {
     setStatus(null);
 
     const payload = {
-      access_key: 'fbb63ae0-0d4c-4e2d-92a5-4282967f0268',
+      access_key: '52ecdd19-80b9-4ea3-9133-296809962ff8',
       name: formData.name,
       email: formData.email,
       projectType: formData.projectType,
@@ -176,5 +176,4 @@ const Partnership = () => {
     </section>
   );
 };
-
 export default Partnership;
